@@ -18,6 +18,10 @@
 		<?php } else { ?>
 			<div class="large-6 columns">
 				<?php the_post_thumbnail('entry'); ?>
+                <?php
+                if(is_home()):?>
+                    <span class="alert label"><?php echo get_post_type();?></span>
+                <?php endif; ?>
 			</div>
 	<?php } ?>
 
