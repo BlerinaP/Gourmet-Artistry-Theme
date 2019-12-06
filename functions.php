@@ -15,6 +15,17 @@ if ( ! function_exists( 'gourmet_artistry_setup' ) ) :
  * runs before the init hook. The init hook is too late for some features, such
  * as indicating support for post thumbnails.
  */
+function print_recipes_posts($query){
+    //not the admin but the main query
+    if(!is_admin() && $query->is_main_query()){
+
+        if(is_home()) {
+
+            $query->set('post_type', array('post', 'recipes'));
+        }
+    }
+}
+add_action('pre_get_posts', 'print_recipes_posts');
 
 function gourmet_artistry_exerpt($length) {
 	return 30;
