@@ -27,6 +27,26 @@ get_header(); ?>
       ?>
     </ul>
 </div>
+<div class="row">
+    <?php $args = array(
+       'posts_per_page' => 4,
+       'post_type' => 'recipes',
+       'orderby' => 'rand',
+       'tax_query' => array(
+          array(
+             'taxonomy' => 'course',
+             'field' => 'slug',
+             'terms' => ' main-dishes',
+          )
+
+       ),
+    );
+    $query = new WP_Query($args); while($query->have_posts()): $query->the_post();
+    the_title('<h1>', '</h1>');
+    endwhile; wp_reset_postdata();
+
+    ?>
+</div>
 
 <div class="row">
 	<div id="primary" class="content-area medium-8 columns">
