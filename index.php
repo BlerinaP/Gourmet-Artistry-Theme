@@ -19,7 +19,6 @@ get_header(); ?>
 
 </div>
 
-<div class="row">
     <h2 class="text-center">Filter by Course: </h2>
     <div id="filter">
         <div class="menu-centered">
@@ -40,7 +39,6 @@ get_header(); ?>
             } ?>
         </div><!---recipes--->
     </div><!--filter-->
-</div>
 
 <div class="row">
 	<div id="primary" class="content-area medium-8 columns">
