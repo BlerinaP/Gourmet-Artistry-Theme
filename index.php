@@ -16,36 +16,30 @@ get_header(); ?>
 
 <?php get_template_part('template-parts/slider', 'entries'); ?>
 <div class="row">
-    <ul class="menu">
-        <?php
-        $terms = get_terms(array(
-           'taxonomy' => 'course'
-        ));
-        foreach($terms as $term){
-            echo "<li><a href='#{$term->slug}'>{$term->name}</a></li>";
-        }
-      ?>
-    </ul>
+
 </div>
+
 <div class="row">
-    <?php $args = array(
-       'posts_per_page' => 4,
-       'post_type' => 'recipes',
-       'orderby' => 'rand',
-       'tax_query' => array(
-          array(
-             'taxonomy' => 'course',
-             'field' => 'slug',
-             'terms' => ' main-dishes',
-          )
-
-       ),
-    );
-    $query = new WP_Query($args); while($query->have_posts()): $query->the_post();
-    the_title('<h1>', '</h1>');
-    endwhile; wp_reset_postdata();
-
-    ?>
+    <h2 class="text-center">Filter by Course: </h2>
+    <div id="filter">
+        <div class="menu-centered">
+            <ul class="menu">
+                <?php
+                $terms = get_terms(array(
+                    'taxonomy' => 'course'
+                ));
+                foreach($terms as $term){
+                    echo "<li><a href='#{$term->slug}'>{$term->name}</a></li>";
+                }
+                ?>
+            </ul>
+        </div> <!--menu. centered-->
+        <div id="recipes">
+            <?php foreach($terms as $term){
+                filter_course_terms($term->slug);
+            } ?>
+        </div><!---recipes--->
+    </div><!--filter-->
 </div>
 
 <div class="row">
