@@ -15,6 +15,18 @@
 get_header(); ?>
 
 <?php get_template_part('template-parts/slider', 'entries'); ?>
+<div class="row">
+    <ul class="menu">
+        <?php
+        $terms = get_terms(array(
+           'taxonomy' => 'course'
+        ));
+        foreach($terms as $term){
+            echo "<li><a href='#{$term->slug}'>{$term->name}</a></li>";
+        }
+      ?>
+    </ul>
+</div>
 
 <div class="row">
 	<div id="primary" class="content-area medium-8 columns">
