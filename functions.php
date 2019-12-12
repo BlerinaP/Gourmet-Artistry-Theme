@@ -15,6 +15,40 @@ if ( ! function_exists( 'gourmet_artistry_setup' ) ) :
  * runs before the init hook. The init hook is too late for some features, such
  * as indicating support for post thumbnails.
  */
+
+    function recipe_breakfast(){
+        $args = array(
+            'post_type' => 'recipes',
+            'posts_per_page' => 3,
+            'orderby' => 'rand',
+            'tax_query' => array(
+                array(
+                    'taxonomy' => 'meal-type',
+                    'field' => 'slug',
+                    'terms' => 'breakfast'
+                ),
+            ),
+        );
+        $posts = get_posts($args);
+
+        $recipes = array();
+
+        foreach($posts as $post){
+
+            $recipes[] = array(
+                'id' => $post->ID,
+                'name' => $post->post_title,
+                'image' => get_the_post_thumbnail( $post->ID),
+                'link' => get_permalink( $post->ID),
+            );
+        }
+        header("Content Type: application/json");
+        echo json_encode( $recipes);
+        die;
+    }
+    add_action('wp_ajax_nopriv_recipe_breakfast', 'recipe_breakfast');
+    add_action('wp_ajax_nopriv_recipe_breakfast', 'recipe_breakfast');
+
     function filter_course_terms($term){
         $args = array(
             'posts_per_page' => 4,
@@ -38,7 +72,7 @@ if ( ! function_exists( 'gourmet_artistry_setup' ) ) :
            echo '<a href="' .get_the_permalink($post->Id) . '">';
            echo get_the_post_thumbnail( $post->ID, 'filter-recipes');
            echo '</a>';
-           echo '<h2 class="text-center">' . get_the_title(). '</h2>';
+           echo '<h3 class="text-center">' . get_the_title(). '</h3>';
            echo '</div>';
            echo '</div>';
 
