@@ -15,7 +15,6 @@ if ( ! function_exists( 'gourmet_artistry_setup' ) ) :
  * runs before the init hook. The init hook is too late for some features, such
  * as indicating support for post thumbnails.
  */
-
     function recipe_breakfast(){
         $args = array(
             'post_type' => 'recipes',
@@ -48,6 +47,77 @@ if ( ! function_exists( 'gourmet_artistry_setup' ) ) :
     }
     add_action('wp_ajax_nopriv_recipe_breakfast', 'recipe_breakfast');
     add_action('wp_ajax_recipe_breakfast', 'recipe_breakfast');
+
+
+
+    function recipe_lunch(){
+        $args = array(
+            'post_type' => 'recipes',
+            'posts_per_page' => 3,
+            'orderby' => 'rand',
+            'tax_query' => array(
+                array(
+                    'taxonomy' => 'meal-type',
+                    'field' => 'slug',
+                    'terms' => 'lunch'
+                ),
+            ),
+        );
+        $posts = get_posts($args);
+
+        $recipes = array();
+        setup_postdata( $post );
+        foreach($posts as $post){
+            $recipes[] = array(
+                'post' => $post,
+                'id' => $post->ID,
+                'name' => $post->post_title,
+                'image' => get_the_post_thumbnail( $post->ID, 'entry'),
+                'link' => get_permalink( $post->ID),
+            );
+        }
+        header("Content-type:application/json");
+        echo json_encode( $recipes);
+        die;
+    }
+    add_action('wp_ajax_nopriv_recipe_lunch', 'recipe_lunch');
+    add_action('wp_ajax_recipe_lunch', 'recipe_lunch');
+
+
+    function recipe_dinner(){
+        $args = array(
+            'post_type' => 'recipes',
+            'posts_per_page' => 3,
+            'orderby' => 'rand',
+            'tax_query' => array(
+                array(
+                    'taxonomy' => 'meal-type',
+                    'field' => 'slug',
+                    'terms' => 'dinner'
+                ),
+            ),
+        );
+        $posts = get_posts($args);
+
+        $recipes = array();
+        setup_postdata( $post );
+        foreach($posts as $post){
+            $recipes[] = array(
+                'post' => $post,
+                'id' => $post->ID,
+                'name' => $post->post_title,
+                'image' => get_the_post_thumbnail( $post->ID, 'entry'),
+                'link' => get_permalink( $post->ID),
+            );
+        }
+        header("Content-type:application/json");
+        echo json_encode( $recipes);
+        die;
+    }
+    add_action('wp_ajax_nopriv_recipe_dinner', 'recipe_dinner');
+    add_action('wp_ajax_recipe_dinner', 'recipe_dinner');
+
+
 
     function filter_course_terms($term){
         $args = array(

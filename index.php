@@ -15,12 +15,15 @@
 get_header(); ?>
 
 <?php get_template_part('template-parts/slider', 'entries'); ?>
-<div class="row">
 
+<div class="meal-recipes">
+    <h2 id="time" class="text-center">Make this for: </h2>
+    <ul id="meal-per-hour" class="row">
+
+    </ul>
 </div>
-
+  <div id="filter">
     <h2 class="text-center">Filter by Course: </h2>
-    <div id="filter">
         <div class="menu-centered">
             <ul class="menu">
                 <?php
