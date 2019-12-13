@@ -14,4 +14,14 @@ jQuery (function($){
           $(recipe_link).show();
           return false;
    });
-});
+
+    jQuery.ajax({
+     url: admin_url.ajax_url,
+       type: 'post',
+       data: {
+         action: 'recipe_breakfast'
+       }
+    }).done(function(response){
+       console.log(response);
+    });
+  });

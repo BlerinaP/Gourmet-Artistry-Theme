@@ -32,22 +32,22 @@ if ( ! function_exists( 'gourmet_artistry_setup' ) ) :
         $posts = get_posts($args);
 
         $recipes = array();
-
+        setup_postdata( $post );
         foreach($posts as $post){
-
             $recipes[] = array(
+                'post' => $post,
                 'id' => $post->ID,
                 'name' => $post->post_title,
-                'image' => get_the_post_thumbnail( $post->ID),
+                'image' => get_the_post_thumbnail( $post->ID, 'entry'),
                 'link' => get_permalink( $post->ID),
             );
         }
-        header("Content Type: application/json");
+        header("Content-type:application/json");
         echo json_encode( $recipes);
         die;
     }
     add_action('wp_ajax_nopriv_recipe_breakfast', 'recipe_breakfast');
-    add_action('wp_ajax_nopriv_recipe_breakfast', 'recipe_breakfast');
+    add_action('wp_ajax_recipe_breakfast', 'recipe_breakfast');
 
     function filter_course_terms($term){
         $args = array(
@@ -65,11 +65,11 @@ if ( ! function_exists( 'gourmet_artistry_setup' ) ) :
         );
         $query = new WP_Query($args);
          echo '<div id="' . $term . '" class="row">';
-        while ($query->have_posts()): $query->the_post();
-
+        while($query->have_posts()): $query->the_post();
+           global $post;
            echo '<div class="small-6 medium-3 columns">';
            echo '<div class="recipe">';
-           echo '<a href="' .get_the_permalink($post->Id) . '">';
+           echo '<a href="' .get_the_permalink( $post->ID) . '">';
            echo get_the_post_thumbnail( $post->ID, 'filter-recipes');
            echo '</a>';
            echo '<h3 class="text-center">' . get_the_title(). '</h3>';
@@ -207,6 +207,10 @@ function gourmet_artistry_scripts() {
 	 wp_enqueue_script('foundation-js', get_template_directory_uri() . '/js/foundation.js', array('jquery'), '20151215', true );
      wp_enqueue_script('what-input', get_template_directory_uri() . '/js/what-input.min.js', array(), '20151215', true );
      wp_enqueue_script('app-js', get_template_directory_uri() . '/js/app.js', array(), '20151215', true );
+
+     wp_localize_script( 'app-js', 'admin_url', array(
+        'ajax_url' => admin_url('admin-ajax.php')
+     ) );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
