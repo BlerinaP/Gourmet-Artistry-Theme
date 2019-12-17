@@ -67,6 +67,27 @@
                 ?>
             </div>
         </div>
+        <div class="extra-information">
+            <?php $calories = get_post_meta(get_the_ID(), 'input-metabox', true); ?>
+            <?php if($calories) { ?>
+                <div class="calories">
+                    <p>Calories: <?php echo $calories; ?></p>
+                </div>
+            <?php } ?>
+
+            <?php $rating = get_post_meta(get_the_ID(), 'dropdown-metabox', true); ?>
+            <?php if($rating) { ?>
+                <div class="rating">
+                    <p>Rating: <?php echo $rating; ?> Stars </p>
+                </div>
+            <?php } ?>
+
+            <?php $description = get_post_meta(get_the_ID(), 'textarea-metabox', true); ?>
+            <?php if($description) { ?>
+                    <blockquote><?php echo $description; ?></blockquote>
+
+            <?php } ?>
+        </div><!--extra information closing--->
         <?php endif; ?>
 		<?php
 			if(is_single()) {
