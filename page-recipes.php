@@ -18,6 +18,14 @@ get_header(); ?>
     <div id="primary" class="content-area">
         <main id="main" class="site-main" role="main">
 
+            <?php
+            $terms = get_terms('course')
+            ?>
+          <ul class="simplefilter menu row">
+              <?php foreach($terms as $term): ?>
+                <li data-filter="<?php echo $term->term_taxonomy_id;?>"><?php echo $term->name ?></li>
+              <?php endforeach; ?>
+          </ul>
         </main><!-- #main -->
     </div><!-- #primary -->
 
