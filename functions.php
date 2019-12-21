@@ -276,7 +276,10 @@ function gourmet_artistry_scripts() {
 
 	 wp_enqueue_script('foundation-js', get_template_directory_uri() . '/js/foundation.js', array('jquery'), '20151215', true );
      wp_enqueue_script('what-input', get_template_directory_uri() . '/js/what-input.min.js', array(), '20151215', true );
+    wp_enqueue_script('filterizr', get_template_directory_uri() . '/js/jquery.filterizr.min.js', array(), '20151215', true );
      wp_enqueue_script('app-js', get_template_directory_uri() . '/js/app.js', array(), '20151215', true );
+
+
 
      wp_localize_script( 'app-js', 'admin_url', array(
         'ajax_url' => admin_url('admin-ajax.php')
