@@ -26,6 +26,20 @@ get_header(); ?>
                 <li data-filter="<?php echo $term->term_taxonomy_id;?>"><?php echo $term->name ?></li>
               <?php endforeach; ?>
           </ul>
+            <?php
+            $args = array(
+               'post_type' => 'recipes',
+               'posts_per_page' => -1,
+               'orderby' => 'title',
+               'order' => 'ASC'
+            );
+            $query = new WP_Query($args);
+            if( $query->have_posts() ) : ?>
+            <?php while($query->have_posts()): $query->the_post(); ?>
+            <?php the_title();?>
+            <?php endwhile;?>
+            <?php endif; ?>
+            <?php wp_reset_postdata();?>
         </main><!-- #main -->
     </div><!-- #primary -->
 
