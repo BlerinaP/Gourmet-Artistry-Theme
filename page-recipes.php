@@ -18,14 +18,21 @@ get_header(); ?>
     <div id="primary" class="content-area">
         <main id="main" class="site-main" role="main">
 
+            <?php the_title('<h1 class="entry-title text-center separator">', '</h1>'); ?>
+
             <?php
             $terms = get_terms('course')
             ?>
           <ul class="simplefilter menu row">
+              <li class="active" data-filter="all">All</li>
               <?php foreach($terms as $term): ?>
                 <li data-filter="<?php echo $term->term_taxonomy_id;?>"><?php echo $term->name ?></li>
               <?php endforeach; ?>
           </ul>
+            <div class="row">
+                Recipe filter
+                <input type="text" class="filtr-search" name="filtr-search" data-search>
+            </div>
             <?php
             $args = array(
                'post_type' => 'recipes',
