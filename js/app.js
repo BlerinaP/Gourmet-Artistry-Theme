@@ -1,6 +1,11 @@
 jQuery(document).foundation();
 
 jQuery (function($){
+
+    if($('.filtr-container').length){
+        $('.filtr-container').filterizr();
+    }
+
     $('#recipes > div').not(':first').hide();
     $('#filter .menu li:first-child').addClass('active');
 
