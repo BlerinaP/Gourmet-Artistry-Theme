@@ -35,9 +35,25 @@ get_header(); ?>
             );
             $query = new WP_Query($args);
             if( $query->have_posts() ) : ?>
+
+            <div class="row">
+                <div class="filtr-container">
+                    <div class="row small-up-2 medium-up-3 large-up-4">
+
             <?php while($query->have_posts()): $query->the_post(); ?>
-            <?php the_title();?>
+                <?php $terms = wp_get_post_terms(get_the_ID(), 'course'); ?>
+                <div class="column filtr-item" data-category="<?php echo $terms[0]->term_taxonomy_id; ?>">
+                    <a href="<?php the_permalink();?>">
+                        <?php the_post_thumbnail('entry');?>
+                        <p class="text-center">
+                            <?php the_title();?>
+                        </p>
+                    </a>
+                </div>
             <?php endwhile;?>
+                 </div>
+               </div>
+            </div>
             <?php endif; ?>
             <?php wp_reset_postdata();?>
         </main><!-- #main -->
