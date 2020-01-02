@@ -42,7 +42,14 @@ get_header(); ?>
 
             <?php while($query->have_posts()): $query->the_post(); ?>
                 <?php $terms = wp_get_post_terms(get_the_ID(), 'course'); ?>
-                <div class="column filtr-item" data-category="<?php echo $terms[0]->term_taxonomy_id; ?>">
+
+                <?php $catIds = array();
+                    foreach ($terms as $term):
+                    $catIds[] = $term->term_taxonomy_id;
+                    endforeach;
+                    $ids = implode(" , ", $catIds);
+                ?>
+                <div class="column filtr-item" data-category="<?php echo $ids; ?>">
                     <a href="<?php the_permalink();?>">
                         <?php the_post_thumbnail('entry');?>
                         <p class="text-center">
