@@ -109,3 +109,42 @@ ul.simplefilter li {
 ul.simplefilter li.active{
     background-color: #212121;
 }
+/**Packed layout**/
+.filtr-container-packed .row .column h3{
+    font-size: 20px;
+}
+.filtr-container-packed .row .column {
+    float: left;
+}
+
+.filtr-container-packed .row .column:nth-child(1),
+.filtr-container-packed .row .column:nth-child(2),
+.filtr-container-packed .row .column:nth-child(5),
+.filtr-container-packed .row .column:nth-child(11),
+.filtr-container-packed .row .column:nth-child(12),
+.filtr-container-packed .row .column:nth-child(13),
+.filtr-container-packed .row .column:nth-child(14),
+.filtr-container-packed .row .column:nth-child(19),
+.filtr-container-packed .row .column:nth-child(20),
+.filtr-container-packed .row .column:nth-child(23){
+    width: 40%;
+}
+.filtr-container-packed .row .column:nth-child(3),
+.filtr-container-packed .row .column:nth-child(4),
+.filtr-container-packed .row .column:nth-child(6),
+.filtr-container-packed .row .column:nth-child(7),
+.filtr-container-packed .row .column:nth-child(8),
+.filtr-container-packed .row .column:nth-child(9),
+.filtr-container-packed .row .column:nth-child(10),
+.filtr-container-packed .row .column:nth-child(15),
+.filtr-container-packed .row .column:nth-child(16),
+.filtr-container-packed .row .column:nth-child(17),
+.filtr-container-packed .row .column:nth-child(18),
+.filtr-container-packed .row .column:nth-child(21),
+.filtr-container-packed .row .column:nth-child(22),
+.filtr-container-packed .row .column:nth-child(24),
+.filtr-container-packed .row .column:nth-child(25),
+.filtr-container-packed .row .column:nth-child(26){
+    width: 20%;
+}
+
