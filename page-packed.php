@@ -44,9 +44,17 @@ get_header(); ?>
             if( $query->have_posts() ) : ?>
 
                 <div class="row">
-                    <div class="filtr-container">
+                    <div class="filtr-container-packed">
                         <div class="row small-up-2 medium-up-3 large-up-4">
-
+                            <?php
+                              $image_size = array(
+                                  'packed_size',
+                                  'packed_size2',
+                                  'packed_size3',
+                                  'packed_size4'
+                              );
+                            ?>
+                            <?php $i = 0; ?>
                             <?php while($query->have_posts()): $query->the_post(); ?>
                                 <?php $terms = wp_get_post_terms(get_the_ID(), 'course'); ?>
 
@@ -58,13 +66,13 @@ get_header(); ?>
                                 ?>
                                 <div class="column filtr-item" data-category="<?php echo $ids; ?>">
                                     <a href="<?php the_permalink();?>">
-                                        <?php the_post_thumbnail('entry');?>
+                                        <?php the_post_thumbnail($image_size[$i]);?>
                                         <p class="text-center">
                                             <?php the_title();?>
                                         </p>
                                     </a>
                                 </div>
-                            <?php endwhile;?>
+                            <?php $i++; endwhile;?>
                         </div>
                     </div>
                 </div>

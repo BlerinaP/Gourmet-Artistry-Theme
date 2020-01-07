@@ -201,6 +201,12 @@ function gourmet_artistry_setup() {
 	add_image_size( 'single-image', 800, 300, true );
     add_image_size( 'filter-recipes', 540, 800, true );
 
+    //Packed image sizes
+    add_image_size( 'packed_size', 550, 1100, true );
+    add_image_size( 'packed_size2', 550, 550, true );
+    add_image_size( 'packed_size3', 550, 275, true );
+    add_image_size( 'packed_size4', 550, 137, true );
+
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
 		'primary' => esc_html__( 'Primary', 'gourmet-artistry' ),
@@ -276,7 +282,8 @@ function gourmet_artistry_scripts() {
 
 	 wp_enqueue_script('foundation-js', get_template_directory_uri() . '/js/foundation.js', array('jquery'), '20151215', true );
      wp_enqueue_script('what-input', get_template_directory_uri() . '/js/what-input.min.js', array(), '20151215', true );
-    wp_enqueue_script('filterizr', get_template_directory_uri() . '/js/jquery.filterizr.min.js', array(), '20151215', true );
+     wp_enqueue_script('filterizr', get_template_directory_uri() . '/js/jquery.filterizr.min.js', array(), '20151215', true );
+     wp_enqueue_script('packer', get_template_directory_uri() . '/js/packer.js', array(), '20151215', true );
      wp_enqueue_script('app-js', get_template_directory_uri() . '/js/app.js', array(), '20151215', true );
 
 
