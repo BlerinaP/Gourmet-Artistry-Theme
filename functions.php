@@ -29,15 +29,21 @@ function advancedSearch(){
     foreach($recipe_results as $recipe){
         setup_postdata($recipe);
         $list[] = array(
-            'object' => $post,
-            'id'     => $post->ID,
-            'name'   => $post->post_title,
-            'content' => $post->post_content,
-            'image'   => get_the_post_thumbnail($post->ID, 'entry'),
-            'link'   => get_permalink($post->ID)
+            'object' => $recipe,
+            'id'     => $recipe->ID,
+            'name'   => $recipe->post_title,
+            'content' => $recipe->post_content,
+            'image'   => get_the_post_thumbnail($recipe->ID, 'entry'),
+            'link'   => get_permalink($recipe->ID)
         );
        }
+        header("Content-type: application/json");
+        echo json_encode($list);
+        die;
     }
+    add_action('wp_ajax_nopriv_advancedSearch', 'advancedSearch');
+    add_action('wp_ajax_advancedSearch', 'advancedSearch');
+    
     function recipe_breakfast(){
         $args = array(
             'post_type' => 'recipes',

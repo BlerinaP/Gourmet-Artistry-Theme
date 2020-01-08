@@ -13,20 +13,7 @@ jQuery (function($){
             type: 'post',
             data: postData
         }).done(function(response){
-            $.each(response, function(index, object){
-                var recipe_meal = '<li class="medium-4 small-12 columns">'+
-                    object.image +
-                    '<div class="content">'+
-                    '<h3 class="text-center">'+
-                    '<a href="'+object.link+'">' +
-                    object.name +
-                    '</a>' +
-                    '</h3>' +
-                    '</div>' +
-                    '</li>';
-
-                $('#meal-per-hour').append(recipe_meal);
-            });
+           console.log(response);
         });
     });
 
