@@ -16,12 +16,13 @@ get_header(); ?>
 
 <?php get_template_part('template-parts/slider', 'entries'); ?>
 
-<div class="meal-recipes">
+<div class="meal-recipes row">
     <h2 id="time" class="text-center">Make this for: </h2>
-    <ul id="meal-per-hour" class="row">
+    <ul id="meal-per-hour" class="no-bullet">
 
     </ul>
 </div>
+
   <div id="filter">
     <h2 class="text-center">Filter by Course: </h2>
         <div class="menu-centered">
@@ -42,6 +43,18 @@ get_header(); ?>
             } ?>
         </div><!---recipes--->
     </div><!--filter-->
+
+<div id="search_form" class="row">
+    <h2 class="text-center">Advanced Search</h2>
+
+    <div class="search">
+        <input type="text" name="recipe_name" id="recipe_name" placeholder="Search your favorite recipe">
+        <button id="search_btn" type="button" class="button">Search</button>
+    </div>
+    <div id="result">
+
+    </div>
+</div>
 
 <div class="row">
 	<div id="primary" class="content-area medium-8 columns">
