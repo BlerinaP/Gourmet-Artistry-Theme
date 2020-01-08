@@ -15,6 +15,29 @@ if ( ! function_exists( 'gourmet_artistry_setup' ) ) :
  * runs before the init hook. The init hook is too late for some features, such
  * as indicating support for post thumbnails.
  */
+
+function advancedSearch(){
+    $recipe = $_POST['recipe_name'];
+
+    $args = array(
+      'post_type' => 'recipes',
+      'post_per_page' => -1,
+      's' => $recipe
+    );
+    $recipe_results = get_posts($args);
+    $list = array();
+    foreach($recipe_results as $recipe){
+        setup_postdata($recipe);
+        $list[] = array(
+            'object' => $post,
+            'id'     => $post->ID,
+            'name'   => $post->post_title,
+            'content' => $post->post_content,
+            'image'   => get_the_post_thumbnail($post->ID, 'entry'),
+            'link'   => get_permalink($post->ID)
+        );
+       }
+    }
     function recipe_breakfast(){
         $args = array(
             'post_type' => 'recipes',
@@ -204,8 +227,8 @@ function gourmet_artistry_setup() {
     //Packed image sizes
     add_image_size( 'packed_size', 550, 1100, true );
     add_image_size( 'packed_size2', 550, 550, true );
-    add_image_size( 'packed_size3', 550, 275, true );
-    add_image_size( 'packed_size4', 550, 137, true );
+    add_image_size( 'packed_size3', 550, 300, true );
+    add_image_size( 'packed_size4', 550, 225, true );
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(

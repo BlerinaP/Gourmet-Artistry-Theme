@@ -1,9 +1,46 @@
 jQuery(document).foundation();
 
 jQuery (function($){
+    $('#search_btn').on('click', function(){
+
+        var recipe = $('#recipe_name').val();
+        var postData = {
+            action: 'advancedSearch',
+            search_recipe: recipe
+        }
+        jQuery.ajax({
+            url: admin_url.ajax_url,
+            type: 'post',
+            data: postData
+        }).done(function(response){
+            $.each(response, function(index, object){
+                var recipe_meal = '<li class="medium-4 small-12 columns">'+
+                    object.image +
+                    '<div class="content">'+
+                    '<h3 class="text-center">'+
+                    '<a href="'+object.link+'">' +
+                    object.name +
+                    '</a>' +
+                    '</h3>' +
+                    '</div>' +
+                    '</li>';
+
+                $('#meal-per-hour').append(recipe_meal);
+            });
+        });
+    });
+
+    $('.simplefilter li').click(function(){
+        $('.simplefilter li').removeClass('active');
+        $(this).addClass('active');
+    });
 
     if($('.filtr-container').length){
         $('.filtr-container').filterizr();
+    }
+
+    if($('.filtr-container-packed').length){
+        $('.filtr-container-packed').filterizr({layout: 'packed'});
     }
 
     $('#recipes > div').not(':first').hide();
