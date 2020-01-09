@@ -20,6 +20,7 @@ jQuery (function($){
             type: 'post',
             data: postData
         }).done(function(response){
+            console.log(response.length);
            $.each(response, function(index, object){
                var result = '<div class="medium-6 columns">';
                result += '<div class="row">';
@@ -37,6 +38,14 @@ jQuery (function($){
 
                $('#result').append(result);
            });
+
+           if (!response.length > 0){
+               var result = '<h2>No result found, try with other search terms</h2>';
+               $('#results_found').html(result);
+           } else {
+               var result = '<h2>There are: ' + response.length + ' result(s)';
+               $('#results_found').html(result);
+           }
         });
     });
 
