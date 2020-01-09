@@ -18,11 +18,19 @@ if ( ! function_exists( 'gourmet_artistry_setup' ) ) :
 
 function advancedSearch(){
     $recipe = $_POST['recipe_name'];
+    $price = $_POST['price_range'];
 
     $args = array(
       'post_type' => 'recipes',
       'post_per_page' => -1,
-      's' => $recipe
+      's' => $recipe,
+      'tax_query' => array(
+          array(
+              'taxonomy' => 'price_range',
+              'field' => 'slug',
+              'terms' => $price
+          ),
+    )
     );
     $recipe_results = get_posts($args);
     $list = array();

@@ -4,10 +4,12 @@ jQuery (function($){
     $('#search_btn').on('click', function(){
         $('#result').html('');
         var recipe = $('#recipe_name').val();
+        var price_range = $('#price_range').val();
 
         var postData = {
             action: 'advancedSearch',
-            recipe_name: recipe
+            recipe_name: recipe,
+            price_range: price_range
         };
         jQuery.ajax({
             url: admin_url.ajax_url,
@@ -25,7 +27,7 @@ jQuery (function($){
                result += '<div class="medium-6 columns">';
                result += '<h2>' + object.name + '</h2>';
                result += '<p>' + object.content + '</p>';
-               result += '<a class="button" href="' + object.link + '"> View Recipe</a>"';
+               result += '<a class="button" href="' + object.link + '"> View Recipe</a>';
                result += '</div>'; //closing row
                result += '</div>';//closing medium6
 
