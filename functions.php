@@ -20,6 +20,10 @@ function advancedSearch(){
     $recipe = $_POST['recipe_name'];
     $price = $_POST['price_range'];
     $course = $_POST['course'];
+    $calories = $_POST['calories'];
+    $calories = explode('-', $calories);
+    $min = $calories[0];
+    $max = $calories[1];
 
     $args = array(
       'post_type' => 'recipes',
@@ -37,7 +41,15 @@ function advancedSearch(){
               'field' => 'slug',
               'terms' => $course
           ),
-    )
+    ),
+        'meta-query' => array(
+            array(
+                'key' => 'input-metabox',
+                'value' => array($min, $max),
+                'type' => 'numeric',
+                'compare' => 'BETWEEN'
+            ),
+        ),
     );
     $recipe_results = get_posts($args);
     $list = array();

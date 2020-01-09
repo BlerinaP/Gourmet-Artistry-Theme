@@ -49,6 +49,13 @@ get_header(); ?>
 
     <div class="search">
         <input type="text" name="recipe_name" id="recipe_name" placeholder="Search your favorite recipe">
+        <select id="calories" name="calories">
+            <option value="0-200"> 200 or less</option>
+            <option value="201-400"> 201 to 400</option>
+            <option value="401-600"> 401 to 600</option>
+            <option value="600-10000"> 600 and more</option>
+        </select>
+
         <select id="price_range" name="price_range">
             <?php
             $terms = get_terms('price_range', array(

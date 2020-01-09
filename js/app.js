@@ -6,12 +6,14 @@ jQuery (function($){
         var recipe = $('#recipe_name').val();
         var price_range = $('#price_range').val();
         var course = $('#course').val();
+        var calories = $('#calories').val();
 
         var postData = {
             action: 'advancedSearch',
             recipe_name: recipe,
             price_range: price_range,
-            course: course
+            course: course,
+            calories: calories
         };
         jQuery.ajax({
             url: admin_url.ajax_url,
