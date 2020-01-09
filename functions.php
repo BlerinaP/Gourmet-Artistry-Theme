@@ -32,7 +32,7 @@ function advancedSearch(){
             'object' => $recipe,
             'id'     => $recipe->ID,
             'name'   => $recipe->post_title,
-            'content' => $recipe->post_content,
+            'content' => wp_trim_words($recipe->post_content, 18),
             'image'   => get_the_post_thumbnail($recipe->ID, 'entry'),
             'link'   => get_permalink($recipe->ID)
         );
