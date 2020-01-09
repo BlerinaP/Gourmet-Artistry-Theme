@@ -51,12 +51,22 @@ get_header(); ?>
         <input type="text" name="recipe_name" id="recipe_name" placeholder="Search your favorite recipe">
         <select id="price_range" name="price_range">
             <?php
-             $terms = get_terms('price_range', array(
+            $terms = get_terms('price_range', array(
                 'hide_empty' => false,
-             ));
-             foreach($terms as $term){
-                 echo '<option value="'. $term->slug . '">' . $term->name . '</option>';
-             }
+            ));
+            foreach($terms as $term){
+                echo '<option value="'. $term->slug . '">' . $term->name . '</option>';
+            }
+            ?>
+        </select>
+        <select id="course" name="course">
+            <?php
+            $terms = get_terms('course', array(
+                'hide_empty' => false,
+            ));
+            foreach($terms as $term){
+                echo '<option value="'. $term->slug . '">' . $term->name . '</option>';
+            }
             ?>
         </select>
         <button id="search_btn" type="button" class="button">Search</button>

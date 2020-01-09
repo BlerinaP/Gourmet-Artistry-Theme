@@ -5,11 +5,13 @@ jQuery (function($){
         $('#result').html('');
         var recipe = $('#recipe_name').val();
         var price_range = $('#price_range').val();
+        var course = $('#course').val();
 
         var postData = {
             action: 'advancedSearch',
             recipe_name: recipe,
-            price_range: price_range
+            price_range: price_range,
+            course: course
         };
         jQuery.ajax({
             url: admin_url.ajax_url,
