@@ -42,7 +42,6 @@
 		<?php
 		endif; ?>
 	</header><!-- .entry-header -->
-
 	<div class="entry-content">
         <?php if('recipes' === get_post_type()):?>
         <div class="taxonomies">
@@ -67,27 +66,32 @@
                 ?>
             </div>
         </div>
+
+        <?php if(is_single()): ?>
         <div class="extra-information">
+            <div class="row">
             <?php $calories = get_post_meta(get_the_ID(), 'input-metabox', true); ?>
             <?php if($calories) { ?>
-                <div class="calories">
-                    <p>Calories: <?php echo $calories; ?></p>
+                <div class="calories small-6 columns">
+                    <p>Calories: <em><?php echo $calories; ?></em></p>
                 </div>
             <?php } ?>
 
             <?php $rating = get_post_meta(get_the_ID(), 'dropdown-metabox', true); ?>
             <?php if($rating) { ?>
-                <div class="rating">
-                    <p>Rating: <?php echo $rating; ?> Stars </p>
+                <div class="rating small-6 columns">
+                    <p>Rating:<em><?php echo $rating; ?></em>  Stars </p>
                 </div>
             <?php } ?>
+            </div><!--- row --->
 
             <?php $description = get_post_meta(get_the_ID(), 'textarea-metabox', true); ?>
             <?php if($description) { ?>
-                    <blockquote><?php echo $description; ?></blockquote>
+                    <blockquote><p><?php echo $description; ?></p></blockquote>
 
             <?php } ?>
         </div><!--extra information closing--->
+        <?php endif;//is_single() ?>
         <?php endif; ?>
 		<?php
 			if(is_single()) {
@@ -107,6 +111,8 @@
 			) );
 		?>
 	</div><!-- .entry-content -->
-
+		<a href="<?php echo get_permalink(get_previous_post()->ID);?>" data-previous-recipe="<?php echo get_previous_post()->ID?>">
+			Previous Recipe
+		</a>
 	</div>
 </article><!-- #post-## -->
